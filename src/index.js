@@ -8,7 +8,7 @@ import Backoffice from "./components/Backoffice.js";
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION, E2BIG } from "constants";
 
 ReactDOM.render(
-    <BrowserRouter basename={"/lattes-mining"}>
+    <BrowserRouter>
         <Switch>
             <Route path="/" exact={true} component={Home}/>
             <Route path="/sobre" component={About}/>
