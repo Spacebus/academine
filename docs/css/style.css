@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+html, 
+body, 
+#root {
+  height: 100%;
+}
+
+html {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  @media (min-width: 768px) {
+    html {
+      
+      font-size: 16px;
+    }
+  }
+  
+  .container {
+    max-width: 960px;
+  }
+  
+  .pricing-header {
+    max-width: 700px;
+  }
+  
+  .card-deck .card {
+    min-width: 220px;
+  }
+  
+  .border-top { border-top: 1px solid #e5e5e5; }
+  .border-bottom { border-bottom: 1px solid #e5e5e5; }
+  
+  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+  
+  .app {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+  }
+    .app-header {
+      flex-grow: 0;
+    }
+    .app-main {
+      flex: 1;
+    }
+    .app-footer {
+      flex-grow: 0;
+    }

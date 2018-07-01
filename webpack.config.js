@@ -21,6 +21,7 @@ module.exports = {
         publicPath: "/js/"
     },
     devServer: {
-        contentBase: "docs"
+        contentBase: "docs",
+        historyApiFallback: true
     }
 }
