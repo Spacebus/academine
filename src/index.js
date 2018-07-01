@@ -8,7 +8,7 @@ import Backoffice from "./components/Backoffice.js";
 
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route path="/" exact={true} component={Home}/>
             <Route path="/sobre" component={About}/>
