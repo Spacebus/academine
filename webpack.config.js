@@ -22,6 +22,7 @@ module.exports = {
     },
     devServer: {
         contentBase: "docs",
-        historyApiFallback: true
+        historyApiFallback: true,
+        openPage: "/lattes-mining/"
     }
 }
