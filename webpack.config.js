@@ -1,26 +1,26 @@
 const path = require("path");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: "./src/index.js",
-    devtool: "inline-source-map",
-    
+    entry: {
+        main: "./src/index.js"
+    },
+    mode: "development",
     module: {
+
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
-            },
+                use: [ "babel-loader" ]
+            }
         ]
     },
-    devServer: {
-        contentBase: "./docs"
-    },
     output: {
-        filename: "main.js",
-        path: path.resolve(__dirname, "docs/scripts")
+        filename: "[name]-bundle.js",
+        path: path.resolve(__dirname, "./docs/js"),
+        publicPath: "/js/"
+    },
+    devServer: {
+        contentBase: "docs"
     }
 }
