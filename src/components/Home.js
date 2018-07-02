@@ -34,7 +34,13 @@ export default class Home extends React.Component {
                     resume: "Penso em fazer como segunda graduação, mas não vejo a medicina como isso de nooossa que profissionais superiores aos outros, a gente precisa desendeusar a figura do médico pelo bem dos próprios pacientes",
                     city: "Recife",
                     state: "PE",
-                    country: "Brasil"
+                    country: "Brasil",
+                    lattes_url: "#",
+                    specialities: [
+                        {id: 1, name: "Engenharia de Software"},
+                        {id: 2, name: "Gerência de projetos"},
+                        {id: 3, name: "Compiladores"}
+                    ]
                 },
                 {
                     id: 2,
@@ -44,7 +50,13 @@ export default class Home extends React.Component {
                     resume: "Penso em fazer como segunda graduação, mas não vejo a medicina como isso de nooossa que profissionais superiores aos outros, a gente precisa desendeusar a figura do médico pelo bem dos próprios pacientes",
                     city: "Recife",
                     state: "PE",
-                    country: "Brasil"
+                    country: "Brasil",
+                    lattes_url: "#",
+                    specialities: [
+                        {name: "Engenharia de Software"},
+                        {name: "Gerência de projetos"},
+                        {name: "Compiladores"}
+                    ]
                 }
             ],
             isResultsVisible: false

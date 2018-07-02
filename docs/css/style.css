@@ -113,17 +113,54 @@ html {
 }
 
 .results-area {
-  margin-top: 2rem;
-  display: none;
+  margin-top: 5rem;
+  max-height: 0;
+  overflow-y: hidden;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
 }
 .results-area.visible {
   display: block;
+  max-height: 100%;
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
 }
 .results-area h1 {
-  font-size: 20px;
+  font-size: 28px;
   margin-bottom: 20px;
 }
-
+.card {
+  flex-flow: row nowrap;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+.card:hover {
+  box-shadow: 7px 10px 8px -10px rgba(0,0,0, .2);
+}
+.card .resume {
+  display: none;
+}
+.card.open .resume {
+  display: block;
+}
+.card .links {
+  margin: 0;
+}
+.specialities {
+  margin: .5rem 0;
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  margin: 10px;
+  box-sizing: content-box;
+  flex-shrink: 0;
+}
+.avatar img {
+  margin-top: -12px;
+  margin-left: -5px;
+}
 @media (max-height: 500px) {
   .searchbar, .home-search {
     margin-top: 0;

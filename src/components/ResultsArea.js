@@ -2,6 +2,16 @@ import React from "react";
 
 export default class SearchBar extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        
+    }
+
+    openCard() {
+
+    }
+
     render() {
 
         return (
@@ -15,18 +25,41 @@ export default class SearchBar extends React.Component {
     }
 }
 
-const Card = (props) => {
-    return (
-        <div className="card flex-md-row mb-3 box-shadow h-md-250">
-            <img className="card-img-right flex-auto d-lg-block" alt="Thumbnail [200x250]" src={props.r.url_photo} style={{maxWidth: "125px"}}></img>
-            <div className="card-body d-flex flex-column align-items-start">
-                <h3 className="mb-0">
-                <a className="text-dark" href="#">{props.r.name}</a>
-                </h3>
-                <div className="mb-1 text-muted">{props.r.city + ", " + props.r.state + ", " + props.r.country}</div>
-                <p className="card-text mb-auto">{props.r.resume.slice(0,50)}</p>
-                <a href="#">Curriculo Lattes</a>
-            </div>   
-        </div>
-    )
+
+class Card extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            open: false
+        }
+
+        this.open = this.open.bind(this);
+    }
+
+    open() {
+        this.setState((prevState) => ({
+            open: !prevState.open
+        }));
+    }
+    
+    render() {
+        return (
+            <div className={ this.state.open ? "card flex-md-row mb-3 box-shadow h-md-250 open " : "card flex-md-row mb-3 box-shadow h-md-250" } onClick={() => this.open()}>
+                <div className="avatar">
+                    <img src={this.props.r.url_photo}></img>
+                </div>
+                
+                <div className="card-body d-flex flex-column align-items-start">
+                    <h4 className="mb-0 text-dark">{this.props.r.name}</h4>
+                    <div className="mb-1 text-muted">{this.props.r.city + ", " + this.props.r.state + " - " + this.props.r.country + " ● " + this.props.r.email}</div>
+                    <div className="specialities">
+                        <b>Especialidades:</b> { this.props.r.specialities.map((s, i) => (this.props.r.specialities.length-1 === i) ? s.name + ". " : s.name + ", ") }
+                    </div>
+                    <p className="resume card-text mb-auto"><b>Resumo: </b> {this.props.r.resume}</p>
+                    <p className="links"><a href={this.props.r.lattes_url}>Ver currículo Lattes</a> ● <a href={"mailto:" + this.props.r.email}>Enviar e-mail</a></p>
+                </div>   
+            </div>
+        )
+    }
 }
