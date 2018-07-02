@@ -11,15 +11,19 @@ export default class SearchBar extends React.Component {
             <div className="input-group searchbar">
                 {
                     !this.props.currentSearch ? 
-                        <input type="text" className="form-control" id="search" placeholder="Áreas de pesquisa, tópicos de estudo" required="" onKeyUp={(e) => this.props.onKeyUp(e.target.value)}></input>   
-                    :    
-                        <div className="tag-container d-flex align-items-center">
-                            <Tag title={this.props.currentSearch.title} onClick={this.props.onTagClick} />
-                        </div>
+                        [
+                            <input type="text" className="form-control" id="search" placeholder="Áreas de pesquisa, tópicos de estudo" required="" onKeyUp={(e) => this.props.onKeyUp(e.target.value)}></input>,   
+                            <button type="button" className="btn btn-primary" disabled>Pesquisar</button>
+                        ]
+                        :    
+                        [
+                            <div className="tag-container d-flex align-items-center">
+                                <Tag title={this.props.currentSearch.title} onClick={this.props.onTagClick} />
+                            </div>,
+                            <button type="button" className="btn btn-primary" onClick={(e) => this.props.onSearchButtonClick(e)}>Pesquisar</button>
+                        ]
                         
                 }
-                
-                <button type="button" className="btn btn-primary">Pesquisar</button>
 
                 <div className={ this.props.visible ? "autocomplete visible" : "autocomplete" }>
                     {
@@ -32,5 +36,5 @@ export default class SearchBar extends React.Component {
 }
 
 const Tag = (props) => {
-    return <div className="btn btn-outline-primary" onClick={ (e) => props.onClick() }>{props.title} <button type="button" className="close" aria-label="Excluir"></button></div>
+    return <div className="btn btn-outline-primary" onClick={ (e) => props.onClick() }>{props.title} <i className="fas fa-times"></i></div>
 }

@@ -24,7 +24,7 @@ export default class App extends React.Component {
                 </div>
                 
                 <footer className="app-footer pt-4 pb-4 border-top text-center">
-                    <div>Spacebus ©, 2018</div>
+                    <a href="https://github.com/Spacebus"><i className="fas fa-space-shuttle"></i></a>
                 </footer>
             </div>
         ) 

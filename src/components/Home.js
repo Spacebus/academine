@@ -24,20 +24,41 @@ export default class Home extends React.Component {
                     id: 3,
                     title: "Engenharia de Testes"
                 },
-            ]
+            ],
+            results: [
+                {
+                    id: 1,
+                    name: "Hermano Perrelli de Moura",
+                    email: "hermano@cin.ufpe.br",
+                    url_photo: "http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4781650D6",
+                    resume: "Penso em fazer como segunda graduação, mas não vejo a medicina como isso de nooossa que profissionais superiores aos outros, a gente precisa desendeusar a figura do médico pelo bem dos próprios pacientes",
+                    city: "Recife",
+                    state: "PE",
+                    country: "Brasil"
+                },
+                {
+                    id: 2,
+                    name: "Hermano Perrelli de Moura",
+                    email: "hermano@cin.ufpe.br",
+                    url_photo: "http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4781650D6",
+                    resume: "Penso em fazer como segunda graduação, mas não vejo a medicina como isso de nooossa que profissionais superiores aos outros, a gente precisa desendeusar a figura do médico pelo bem dos próprios pacientes",
+                    city: "Recife",
+                    state: "PE",
+                    country: "Brasil"
+                }
+            ],
+            isResultsVisible: false
         }
         this.handleKeyUp = this.handleKeyUp.bind(this);
         this.defineSearch = this.defineSearch.bind(this);
-        this.onTagClick = this.onTagClick.bind(this);
+        this.clearSearch = this.clearSearch.bind(this);
+        this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
     }
 
     handleKeyUp(text) {
         this.setState(() => ({
             isAutocompleteVisible : !!text
-        }));
-
-        console.log(this.state.areas);
-        
+        }));        
     }
 
     defineSearch(area) {
@@ -48,9 +69,16 @@ export default class Home extends React.Component {
         }));
     }
 
-    onTagClick() {
+    clearSearch() {
         this.setState(() => ({
-            currentSearch : null
+            currentSearch : null,
+            isResultsVisible : false
+        }));
+    }
+
+    onSearchButtonClick() {
+        this.setState(() => ({
+            isResultsVisible : true
         }));
     }
 
@@ -59,17 +87,22 @@ export default class Home extends React.Component {
             <App>
                 <div>
                     <div className="home-search mx-auto text-center">
-                        <div class="text">
+                        <div className="text">
                             <h1 className="display-4">Encontrar pesquisadores</h1>
                             <p className="lead">por áreas de pesquisa ou tópicos de estudo</p>
                         </div>
                         
-                        <SearchBar areas={this.state.areas} defineSearch={ this.defineSearch } onKeyUp={ this.handleKeyUp } visible={this.state.isAutocompleteVisible} currentSearch={this.state.currentSearch} onTagClick={this.onTagClick}/>
+                        <SearchBar areas={this.state.areas} 
+                                   defineSearch={ this.defineSearch } 
+                                   onKeyUp={ this.handleKeyUp } 
+                                   visible={this.state.isAutocompleteVisible} 
+                                   currentSearch={this.state.currentSearch} 
+                                   onTagClick={this.clearSearch}
+                                   onSearchButtonClick={this.onSearchButtonClick} />
                     </div>
                     
-                    <div className="container">
-                        <ResultsArea />
-                    </div>
+                    <ResultsArea visible={this.state.isResultsVisible} currentSearch={this.state.currentSearch} results={this.state.results} />
+                    
                 </div>
             </App>
         )
