@@ -41,12 +41,14 @@ html {
   }
     .app-header {
       flex-grow: 0;
+      flex-shrink: 0;
     }
     .app-main {
       flex: 1;
     }
     .app-footer {
       flex-grow: 0;
+      flex-shrink: 0;
     }
 
   .home-search {
@@ -55,6 +57,20 @@ html {
   @media (min-width: 768px) {
     .home-search {
       margin-top: 10rem;
+    }
+  }
+  .home-search .text {
+
+  }
+  @media (max-height: 500px) {
+    .searchbar, .home-search {
+      margin-top: 0;
+    }
+    .home-search .text {
+      display: none;
+    }
+    footer {
+      display: none;
     }
   }
     .searchbar  {

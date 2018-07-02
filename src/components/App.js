@@ -23,7 +23,7 @@ export default class App extends React.Component {
                     { ...this.props.children }
                 </div>
                 
-                <footer className="app-footer pt-4 my-md-4  border-top text-center">
+                <footer className="app-footer pt-4 pb-4 border-top text-center">
                     <div>Spacebus ©, 2018</div>
                 </footer>
             </div>

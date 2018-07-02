@@ -59,8 +59,11 @@ export default class Home extends React.Component {
             <App>
                 <div>
                     <div className="home-search mx-auto text-center">
-                        <h1 className="display-4">Encontrar pesquisadores</h1>
-                        <p className="lead">por áreas de pesquisa ou tópicos de estudo</p>
+                        <div class="text">
+                            <h1 className="display-4">Encontrar pesquisadores</h1>
+                            <p className="lead">por áreas de pesquisa ou tópicos de estudo</p>
+                        </div>
+                        
                         <SearchBar areas={this.state.areas} defineSearch={ this.defineSearch } onKeyUp={ this.handleKeyUp } visible={this.state.isAutocompleteVisible} currentSearch={this.state.currentSearch} onTagClick={this.onTagClick}/>
                     </div>
                     
