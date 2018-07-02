@@ -48,3 +48,59 @@ html {
     .app-footer {
       flex-grow: 0;
     }
+
+  .home-search {
+    margin-top: 3rem;
+  }
+  @media (min-width: 768px) {
+    .home-search {
+      margin-top: 10rem;
+    }
+  }
+    .searchbar  {
+      position: relative;
+      margin-top: 2rem;
+    }
+    .searchbar input {
+      padding: 15px 20px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      z-index: 10;
+    }
+    .searchbar button {
+      z-index: 10;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+
+    .autocomplete {
+      background: #fff;
+      width: 100%;
+      display: none;
+      position: absolute;
+      top: 97%;
+      border: 1px solid #ccc;
+      z-index: 0;
+    }
+    .autocomplete.visible {
+      display: block;
+    }
+    .autocomplete .suggestion {
+      transition: all .1s ease-in-out;
+      padding: 16px 20px;
+      font-size: 16px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .autocomplete .suggestion:hover {
+      background: #bbddff;
+    }
+    .tag-container {
+      height: 56px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      z-index: 10;
+      padding: 0 10px;
+      border: 1px solid #ced4da;
+      flex: 1;
+    }
