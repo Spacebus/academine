@@ -16,14 +16,14 @@ export default class Backoffice extends React.Component {
     componentDidMount() {
 
         /** Authentication */
-        fetch("https://lattes-mining-api.herokuapp.com/authenticate", {
+        fetch("https://academine-api.herokuapp.com/authenticate", {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
             }, 
             body: JSON.stringify({ 
-                "email": "admin@cin.ufpe.br", 
-                "password": "123456"
+                "email": "admin@academine.org", 
+                "password": "4cademin3"
             })  
         }).then(res => {
             if(res.status === 200) {
@@ -71,12 +71,12 @@ export default class Backoffice extends React.Component {
     sendFiles() {
         console.log("Enviando...");
         var xmls = JSON.stringify({ 
-            xmls: this.files
+            xml: this.files[0]
         });
 
         console.log(xmls);
 
-        fetch("https://lattes-mining-api.herokuapp.com/receive", {
+        fetch("https://academine-api.herokuapp.com/receive", {
             method: "post",
             headers: {
                 "content-type": "application/json",
@@ -93,6 +93,8 @@ export default class Backoffice extends React.Component {
         }).catch(err => { 
             alert("Erro ao enviar de dados (" + err.message + ")"); 
         });
+
+        this.files = [];
     }
 
     render() {

@@ -69,14 +69,14 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://lattes-mining-api.herokuapp.com/authenticate", {
+        fetch("https://academine-api.herokuapp.com/authenticate", {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
             }, 
             body: JSON.stringify({ 
-                "email": "admin@cin.ufpe.br", 
-                "password": "123456"
+                "email": "admin@academine.org", 
+                "password": "4cademin3"
             })  
         }).then(res => {
             if(res.status === 200) {
