@@ -59,12 +59,42 @@ export default class Home extends React.Component {
                     ]
                 }
             ],
-            isResultsVisible: false
+            isResultsVisible: false,
+            auth_token: null
         }
         this.handleKeyUp = this.handleKeyUp.bind(this);
         this.defineSearch = this.defineSearch.bind(this);
         this.clearSearch = this.clearSearch.bind(this);
         this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("https://lattes-mining-api.herokuapp.com/authenticate", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            }, 
+            body: JSON.stringify({ 
+                "email": "admin@cin.ufpe.br", 
+                "password": "123456"
+            })  
+        }).then(res => {
+            if(res.status === 200) {
+                res.json().then( (data) => { 
+                    this.setState(() => {
+                        return {
+                            auth_token: data.data.token
+                        }
+                    });
+
+                    console.log(this.state);
+                });
+            } else {
+                alert("Erro durante autenticação (" + res.status + ": " + res.statusText +")"); 
+            }
+        }).catch(err => { 
+            alert("Erro durante autenticação (" + err.message + ")"); 
+        });
     }
 
     handleKeyUp(text) {

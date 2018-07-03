@@ -5,11 +5,41 @@ export default class Backoffice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            files: []
+            auth_token: null
         }
         this.files = [];
         this.handleFileSelect = this.handleFileSelect.bind(this);
+        this.sendFiles = this.sendFiles.bind(this);
 
+    }
+
+    componentDidMount() {
+
+        /** Authentication */
+        fetch("https://lattes-mining-api.herokuapp.com/authenticate", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            }, 
+            body: JSON.stringify({ 
+                "email": "admin@cin.ufpe.br", 
+                "password": "123456"
+            })  
+        }).then(res => {
+            if(res.status === 200) {
+                res.json().then( (data) => { 
+                    this.setState(() => {
+                        return {
+                            auth_token: data.data.token
+                        }
+                    });
+                });
+            } else {
+                alert("Erro durante autenticação (" + res.status + ": " + res.statusText +")"); 
+            }
+        }).catch(err => { 
+            alert("Erro durante autenticação (" + err.message + ")"); 
+        });
     }
 
     handleFileSelect() {
@@ -23,7 +53,9 @@ export default class Backoffice extends React.Component {
 
                 // Closure to capture the file information.
                 reader.onload = (e) => {
-                    this.files.push(e.target.result);
+                    var xml = e.target.result;
+                    xml = xml.replace(/^\uFEFF/, '').replace(/'/g, "").replace(/\"/g, "'");
+                    this.files.push(xml);
                 };
 
                 // Read in the image file as a data URL.
@@ -35,6 +67,31 @@ export default class Backoffice extends React.Component {
           }
     }
 
+    sendFiles() {
+        console.log("Enviando...");
+        var xmls = JSON.stringify({ 
+            xmls: this.files
+        });
+
+        fetch("https://lattes-mining-api.herokuapp.com/receive", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + this.state.auth_token
+            }, 
+            body: xmls
+        }).then(res => {
+            if(res.status === 200) {
+                console.log(res);
+                res.json().then(data => console.log(data));
+            } else {
+                alert("Erro durante envio de dados (" + res.status + ": " + res.statusText +")"); 
+            }
+        }).catch(err => { 
+            alert("Erro ao enviar de dados (" + err.message + ")"); 
+        });
+    }
+
     render() {
         return (
             <App>
@@ -42,7 +99,7 @@ export default class Backoffice extends React.Component {
                     <h1>Backoffice</h1>
                     <p>Inserir dados</p>
                     <input type="file" id="xml" name="xml"  multiple onChange={() => this.handleFileSelect()} />
-                    <button>Enviar</button>
+                    <button onClick={() => this.sendFiles()}>Enviar</button>
                 </div>
                 
             </App>
