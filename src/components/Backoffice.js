@@ -33,6 +33,7 @@ export default class Backoffice extends React.Component {
                             auth_token: data.data.token
                         }
                     });
+                    console.log(this.state);
                 });
             } else {
                 alert("Erro durante autenticação (" + res.status + ": " + res.statusText +")"); 
