@@ -18,7 +18,7 @@ export default class SearchBar extends React.Component {
                         :    
                         [
                             <div className="tag-container d-flex align-items-center">
-                                <Tag title={this.props.currentSearch.title} onClick={this.props.onTagClick} />
+                                <Tag title={this.props.currentSearch.name} onClick={this.props.onTagClick} />
                             </div>,
                             <button type="button" className="btn btn-primary" onClick={(e) => this.props.onSearchButtonClick(e)}>Pesquisar</button>
                         ]
@@ -27,7 +27,7 @@ export default class SearchBar extends React.Component {
 
                 <div className={ this.props.visible ? "autocomplete visible" : "autocomplete" }>
                     {
-                        this.props.areas.map((a) => <div className="suggestion" onClick={(e) => this.props.defineSearch(a)} key={a.id}>{ a.title }</div>)
+                        this.props.areas.map((a) => <div className="suggestion" onClick={(e) => this.props.defineSearch(a)} key={a.id}>{ a.name }</div>)
                     }
                 </div>
             </div>

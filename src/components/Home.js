@@ -11,54 +11,8 @@ export default class Home extends React.Component {
         this.state = {
             isAutocompleteVisible: false,
             currentSearch: null,
-            areas: [
-                {
-                    id: 1,
-                    title: "Engenharia de Software"
-                },
-                {
-                    id: 2,
-                    title: "Engenharia de Requisitos"
-                },
-                {
-                    id: 3,
-                    title: "Engenharia de Testes"
-                },
-            ],
-            results: [
-                {
-                    id: 1,
-                    name: "Hermano Perrelli de Moura",
-                    email: "hermano@cin.ufpe.br",
-                    url_photo: "http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4781650D6",
-                    resume: "Penso em fazer como segunda graduação, mas não vejo a medicina como isso de nooossa que profissionais superiores aos outros, a gente precisa desendeusar a figura do médico pelo bem dos próprios pacientes",
-                    city: "Recife",
-                    state: "PE",
-                    country: "Brasil",
-                    lattes_url: "#",
-                    specialities: [
-                        {id: 1, name: "Engenharia de Software"},
-                        {id: 2, name: "Gerência de projetos"},
-                        {id: 3, name: "Compiladores"}
-                    ]
-                },
-                {
-                    id: 2,
-                    name: "Hermano Perrelli de Moura",
-                    email: "hermano@cin.ufpe.br",
-                    url_photo: "http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4781650D6",
-                    resume: "Penso em fazer como segunda graduação, mas não vejo a medicina como isso de nooossa que profissionais superiores aos outros, a gente precisa desendeusar a figura do médico pelo bem dos próprios pacientes",
-                    city: "Recife",
-                    state: "PE",
-                    country: "Brasil",
-                    lattes_url: "#",
-                    specialities: [
-                        {name: "Engenharia de Software"},
-                        {name: "Gerência de projetos"},
-                        {name: "Compiladores"}
-                    ]
-                }
-            ],
+            areas: [],
+            results: [],
             isResultsVisible: false,
             auth_token: null
         }
@@ -98,17 +52,36 @@ export default class Home extends React.Component {
     }
 
     handleKeyUp(text) {
-        this.setState(() => ({
-            isAutocompleteVisible : !!text
-        }));        
+        fetch("https://academine-api.herokuapp.com/specialty", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                "Authorization": "Bearer " + this.state.auth_token
+            },
+            body: JSON.stringify({
+                query: text
+            })
+        }).then(res => {
+            res.json().then(data => {
+                this.setState(() => ({
+                    areas : data.data
+                }));
+                this.setState(() => ({
+                    isAutocompleteVisible : !!text
+                }));
+            });
+        });
     }
 
     defineSearch(area) {
         // clears autocomplete
+        console.log(area);
         this.setState(() => ({
             isAutocompleteVisible : false,
             currentSearch : area
         }));
+
+        console.log(this.state);
     }
 
     clearSearch() {
@@ -119,9 +92,25 @@ export default class Home extends React.Component {
     }
 
     onSearchButtonClick() {
-        this.setState(() => ({
-            isResultsVisible : true
-        }));
+        fetch("https://academine-api.herokuapp.com/search", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                "Authorization": "Bearer " + this.state.auth_token
+            },
+            body: JSON.stringify({
+                specialties: [ this.state.currentSearch.id ]
+            })
+        }).then(res => {
+            res.json().then(data => {
+                this.setState(() => ({
+                    results : data.data
+                }));
+                this.setState(() => ({
+                    isResultsVisible : true
+                }));
+            });
+        });
     }
 
     render() {
