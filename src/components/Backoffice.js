@@ -74,6 +74,8 @@ export default class Backoffice extends React.Component {
             xmls: this.files
         });
 
+        console.log(xmls);
+
         fetch("https://lattes-mining-api.herokuapp.com/receive", {
             method: "post",
             headers: {
