@@ -1,2 +1,2 @@
-# lattes-mining
-Homepage da aplicação Lattes-mining
+# Academine
+Homepage da aplicação Academine
