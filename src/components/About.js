@@ -12,7 +12,7 @@ export default class About extends React.Component {
                     <h4>Equipe</h4>
                     <ul>
                         <li>Augusto Gondim (<a target="_blank" href="http://github.com/aacgn">@aacgn</a>)</li>
-                        <li>Eduardo Moura (<a target="_blank" href="http://github.com/esm7">@esm7</a>)</li>
+                        <li>Eduardo Moura (<a target="_blank" href="http://github.com/eduardosm7">@eduardosm7</a>)</li>
                         <li>Marcos Vinicius (<a target="_blank" href="http://github.com/mvhb">@mvhb</a>)</li>
                         <li>Vinícius Giles (<a target="_blank" href="http://github.com/gilesv">@gilesv</a>)</li>
                     </ul>
