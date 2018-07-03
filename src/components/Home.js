@@ -130,8 +130,8 @@ export default class Home extends React.Component {
                 <div>
                     <div className="home-search mx-auto text-center">
                         <div className="text">
-                            <h1 className="display-4">Encontrar pesquisadores</h1>
-                            <p className="lead">por áreas de pesquisa ou tópicos de estudo</p>
+                            <h1 className="display-4">Encontre pesquisadores</h1>
+                            <p className="lead">do CIn-UFPE por áreas de pesquisa ou tópicos de estudo</p>
                         </div>
                         
                         <SearchBar areas={this.state.areas} 
