@@ -17,7 +17,7 @@ export default class App extends React.Component {
                             <Link className="p-2 text-dark" to="/">Home</Link>
                             <Link className="p-2 text-dark" to="/sobre">Sobre</Link>
                         </nav>
-                        <a className="btn btn-outline-primary" target="_blank" href="https://github.com/Spacebus/academine">Ver no GitHub</a>
+                        <a className="btn btn-outline-primary" target="_blank" href="https://github.com/sugarbrain/academine">Ver no GitHub</a>
                     </div>
                 </div>
 
